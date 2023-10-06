@@ -432,4 +432,129 @@ ggsave(here::here("figures/jasr_p_value_zoom_distribution.png"),
        dpi = 600)
 ```
 
+## Caliper test
+
+```{r}
+jasr_caliper <- 
+  jasr_exact_zoom_plot_data %>% 
+  mutate(in_caliper = ifelse(p_value %in% c(0.03875, 0.04000), 
+                             "smaller", 
+                             ifelse(p_value %in% c(0.04875, 0.05000), 
+                                    "larger", ""))) %>% 
+  filter(in_caliper != "") %>% 
+  count(in_caliper)
+
+jasr_caliper_test_binom_test <- 
+binom.test(jasr_caliper$n[2],
+           sum(jasr_caliper$n), 
+           p = 1/2,
+           alternative = "less")
+
+jasr_caliper_n <- unname(jasr_caliper_test_binom_test$parameter)
+jasr_caliper_k <- unname(jasr_caliper_test_binom_test$statistic)
+jasr_caliper_p <- round(unname(jasr_caliper_test_binom_test$p.value), 10)
+
+jasr_df <- data.frame(
+  x = 0.05,
+  y = 140,
+  label = paste0(  "N = ", jasr_caliper_n, 
+                   ", K = ", jasr_caliper_k, 
+                   ", p = ", knitr:::format_sci(signif(jasr_caliper_p, 4), 'html')  , "") 
+)
+
+
+jas_caliper <- 
+  jas_exact_zoom_plot_data %>% 
+  mutate(in_caliper = ifelse(p_value %in% c(0.03875, 0.04000), 
+                             "smaller", 
+                             ifelse(p_value %in% c(0.04875, 0.05000), 
+                                    "larger", ""))) %>% 
+  filter(in_caliper != "") %>% 
+  count(in_caliper)
+
+jas_caliper_test_binom_test <- 
+binom.test(jas_caliper$n[2],
+           sum(jas_caliper$n), 
+           p = 1/2,
+           alternative = "less")
+
+jas_caliper_n <- unname(jas_caliper_test_binom_test$parameter)
+jas_caliper_k <- unname(jas_caliper_test_binom_test$statistic)
+jas_caliper_p <- round(unname(jas_caliper_test_binom_test$p.value), 10)
+
+jas_df <- data.frame(
+  x = 0.05,
+  y = 140,
+  label = paste0(  "N = ", jas_caliper_n, 
+                   ", K = ", jas_caliper_k, 
+                   ", p = ", knitr:::format_sci(signif(jas_caliper_p, 4), 'html')  , "") 
+)
+
+```
+
+```{r}
+library(ggtext)
+
+ggplot(jasr_exact_zoom_plot_data) +
+  aes(p_value) +
+  geom_histogram(bins = 27)  +
+  geom_segment(x = 0.05,
+            xend = 0.05,
+            y = 0,
+            yend = 120,
+             colour = "red",
+            aesthetic = 2) +
+  xlim(0.03, 0.07) +
+  ylim(0, 150) +
+  theme_minimal() +
+  ylab("frequency in JASR") +
+  xlab("p-value (exactly reported in the article text)") +
+  geom_richtext(
+    data = jasr_df,
+    aes(x, y, 
+        label = label),
+    fill = NA, 
+    label.color = NA,
+    size = 10
+  ) +
+  theme_light(base_size = 18) 
+
+ggsave(here::here("figures/jasr_p_value_caliper_test.png"),
+       w = 14,
+       h = 6,
+       dpi = 600)
+
+library(ggtext)
+
+ggplot(jas_exact_zoom_plot_data) +
+  aes(p_value) +
+  geom_histogram(bins = 27)  +
+  geom_segment(x = 0.05,
+            xend = 0.05,
+            y = 0,
+            yend = 120,
+             colour = "red",
+            aesthetic = 2) +
+  xlim(0.03, 0.07) +
+  ylim(0, 150) +
+  theme_minimal() +
+  ylab("frequency in JAS") +
+  xlab("p-value (exactly reported in the article text)") +
+  geom_richtext(
+    data = jas_df,
+    aes(x, y, 
+        label = label),
+    fill = NA, 
+    label.color = NA,
+    size = 10
+  ) +
+  theme_light(base_size = 18) 
+
+ggsave(here::here("figures/jas_p_value_caliper_test.png"),
+       w = 14,
+       h = 6,
+       dpi = 600)
+```
+
+
 
