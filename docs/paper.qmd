@@ -435,11 +435,15 @@ ggsave(here::here("figures/jasr_p_value_zoom_distribution.png"),
 ## Caliper test
 
 ```{r}
+
+caliper1 <- c(0.03875, 0.04000)
+caliper2 <- c(0.04875, 0.05000)
+
 jasr_caliper <- 
   jasr_exact_zoom_plot_data %>% 
-  mutate(in_caliper = ifelse(p_value %in% c(0.03875, 0.04000), 
+  mutate(in_caliper = ifelse(p_value %in% caliper1, 
                              "smaller", 
-                             ifelse(p_value %in% c(0.04875, 0.05000), 
+                             ifelse(p_value %in% caliper2, 
                                     "larger", ""))) %>% 
   filter(in_caliper != "") %>% 
   count(in_caliper)
@@ -467,9 +471,9 @@ jasr_df <- data.frame(
 
 jas_caliper <- 
   jas_exact_zoom_plot_data %>% 
-  mutate(in_caliper = ifelse(p_value %in% c(0.03875, 0.04000), 
+  mutate(in_caliper = ifelse(p_value %in% caliper1, 
                              "smaller", 
-                             ifelse(p_value %in% c(0.04875, 0.05000), 
+                             ifelse(p_value %in% caliper2, 
                                     "larger", ""))) %>% 
   filter(in_caliper != "") %>% 
   count(in_caliper)
@@ -510,8 +514,7 @@ ggplot(jasr_exact_zoom_plot_data) +
             xend = 0.05,
             y = 0,
             yend = 120,
-             colour = "red",
-            aesthetic = 2) +
+             colour = "red") +
   xlim(0.03, 0.07) +
   ylim(0, 150) +
   theme_minimal() +
@@ -536,13 +539,26 @@ library(ggtext)
 
 ggplot(jas_exact_zoom_plot_data) +
   aes(p_value) +
+    # annotate("rect",
+    #        xmin = caliper1[1],
+    #        xmax = caliper1[2],
+    #        ymax = 120,
+    #        ymin = 0,
+    #        fill = "blue",
+    #        colour = "blue") +
+    #   annotate("rect",
+    #        xmin = caliper2[1],
+    #        xmax = caliper2[2],
+    #        ymax = 120,
+    #        ymin = 0,
+    #        fill = "blue",
+    #        colour = "blue") +
   geom_histogram(bins = 27)  +
   geom_segment(x = 0.05,
             xend = 0.05,
             y = 0,
             yend = 120,
-             colour = "red",
-            aesthetic = 2) +
+             colour = "red") +
   xlim(0.03, 0.07) +
   ylim(0, 150) +
   theme_minimal() +
@@ -588,10 +604,36 @@ jasr_statcheck_results_tbl <-
   select(statcheck_results) %>% 
   unnest() 
 
+n_minor_inconsistencies <- 
+  jasr_statcheck_results_tbl %>% 
+  filter(error) %>% 
+  nrow()
+
+n_major_inconsistencies <- 
+  jasr_statcheck_results_tbl %>% 
+  filter(decision_error) %>% 
+  nrow()
+
 class(jasr_statcheck_results_tbl) <- c("statcheck", "data.frame")
 plot(jasr_statcheck_results_tbl, APAstyle = TRUE) +
-  geom_point(size = 4) +
-  scale_color_viridis_d()
+  geom_point(size = 5) +
+  scale_color_viridis_d() +
+  annotate("text",
+           x = 0.3, 
+           y = 0.75,
+           size = 3,
+           hjust = 0,
+           label = paste0(nrow(jasr_statcheck_results_tbl), " papers in JASR\n",
+             n_minor_inconsistencies, " with minor inconsistencies\n",
+            n_major_inconsistencies, " with major inconsistencies"
+                          )) +
+  coord_fixed()
+
+
+ggsave(here::here("figures/jasr_statcheck.png"),
+       w = 8,
+       h = 5,
+       dpi = 600)
 ```
 
 ## Statcheck of JAS articles
