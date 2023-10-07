@@ -450,6 +450,9 @@ binom.test(jasr_caliper$n[2],
            p = 1/2,
            alternative = "less")
 
+jasr_relative_risk <- 
+  jasr_caliper_test_binom_test$estimate[[1]] / jasr_caliper_test_binom_test$null.value[[1]]
+
 jasr_caliper_n <- unname(jasr_caliper_test_binom_test$parameter)
 jasr_caliper_k <- unname(jasr_caliper_test_binom_test$statistic)
 jasr_caliper_p <- round(unname(jasr_caliper_test_binom_test$p.value), 10)
@@ -461,7 +464,6 @@ jasr_df <- data.frame(
                    ", K = ", jasr_caliper_k, 
                    ", p = ", knitr:::format_sci(signif(jasr_caliper_p, 4), 'html')  , "") 
 )
-
 
 jas_caliper <- 
   jas_exact_zoom_plot_data %>% 
@@ -478,6 +480,9 @@ binom.test(jas_caliper$n[2],
            p = 1/2,
            alternative = "less")
 
+jas_relative_risk <- 
+  jas_caliper_test_binom_test$estimate[[1]] / jas_caliper_test_binom_test$null.value[[1]]
+
 jas_caliper_n <- unname(jas_caliper_test_binom_test$parameter)
 jas_caliper_k <- unname(jas_caliper_test_binom_test$statistic)
 jas_caliper_p <- round(unname(jas_caliper_test_binom_test$p.value), 10)
@@ -491,6 +496,9 @@ jas_df <- data.frame(
 )
 
 ```
+
+The JAS p-value is `r format(jas_caliper_p, scientific = FALSE)` and the JASR p-value is `r format(jasr_caliper_p, scientific = FALSE)`
+
 
 ```{r}
 library(ggtext)
@@ -556,5 +564,59 @@ ggsave(here::here("figures/jas_p_value_caliper_test.png"),
        dpi = 600)
 ```
 
+## Statcheck of JASR articles
+
+```{r}
+
+library(statcheck)
+
+# load articles -------------------------------------------------------------
+full_text_jasr_statcheck <- readRDS("data/full_text_jasr.rds")
+
+# run statcheck
+jasr_statcheck_results <- 
+  full_text_jasr_statcheck %>% 
+  mutate(statcheck_results = map(unlist(full_text_jasr), statcheck))
+
+jasr_statcheck_results %>% 
+  select(-full_text_jasr) %>%  
+  unnest(statcheck_results) %>% View
+
+# plot it
+jasr_statcheck_results_tbl <- 
+  jasr_statcheck_results %>% 
+  select(statcheck_results) %>% 
+  unnest() 
+
+class(jasr_statcheck_results_tbl) <- c("statcheck", "data.frame")
+plot(jasr_statcheck_results_tbl, APAstyle = TRUE) +
+  geom_point(size = 4) +
+  scale_color_viridis_d()
+```
+
+## Statcheck of JAS articles
+
+```{r}
+# load articles -------------------------------------------------------------
+full_text_jas_statcheck <- readRDS("data/full_text_jas.rds")
+
+# run statcheck
+jas_statcheck_results <- 
+  full_text_jas_statcheck %>% 
+  mutate(statcheck_results = map(unlist(full_text_jas), statcheck))
+
+jas_statcheck_results %>% 
+  select(-full_text_jas) %>%  
+  unnest(statcheck_results) 
+
+# plot it
+jas_statcheck_results_tbl <- 
+  jas_statcheck_results %>% 
+  select(statcheck_results) %>% 
+  unnest() 
+
+class(jas_statcheck_results_tbl) <- c("statcheck", "data.frame")
+plot(jas_statcheck_results_tbl, APAstyle = TRUE)
+```
 
 
