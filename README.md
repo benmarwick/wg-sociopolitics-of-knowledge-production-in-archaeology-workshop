@@ -1,7 +1,7 @@
 
 # The Socio-Politics of Knowledge Production in Archaeology and Anthropology Workshop, October 2023
 
-This repository contains the R code and data for my presentation (available at [google slides](https://docs.google.com/presentation/d/1y6KGr1tUUwqQNrJE6gQPFboaMPaHxQmfLx0tpld8fKQ/edit#slide=id.ged4dcd42fc_0_167)] in this workshop:
+This repository contains the R code and data for my presentation (available at [google slides](https://docs.google.com/presentation/d/1y6KGr1tUUwqQNrJE6gQPFboaMPaHxQmfLx0tpld8fKQ/edit#slide=id.ged4dcd42fc_0_167)) in this workshop:
 
 ## Reputational Risk and Questionable Research Practices in Archaeological Science.
 
