@@ -1,0 +1,13 @@
+Package: wg-sociopolitics-of-knowledge-production-in-archaeology-workshop
+Title: Reputational Risk and Questionable Research Practices in Archaeological Science.
+Version: 0.0.0.9000
+Authors@R: 
+    person("Ben", "Marwick", , "benmarwick@gmail.com", role = c("aut", "cre"),
+           comment = c(ORCID = "0000-0001-7879-4531"))
+Description: This repository contains the R code and data for my presentation 
+    (available at google slides) in this workshop 'The Socio-Politics of Knowledge 
+    Production in Archaeology and Anthropology Workshop, October 2023'
+License: MIT + file LICENSE
+Encoding: UTF-8
+Roxygen: list(markdown = TRUE)
+RoxygenNote: 7.2.3
