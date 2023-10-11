@@ -4,7 +4,9 @@ FROM rocker/verse:4.2.2
 # required
 MAINTAINER Your Name <your_email@somewhere.com>
 
+WORKDIR /wg-sociopolitics-of-knowledge-production-in-archaeology-workshop
 COPY . /wg-sociopolitics-of-knowledge-production-in-archaeology-workshop
+
 
 # go into the repo directory
 RUN . /etc/environment \
