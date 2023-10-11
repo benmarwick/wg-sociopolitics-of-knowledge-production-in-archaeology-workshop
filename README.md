@@ -3,6 +3,9 @@
 
 # The Socio-Politics of Knowledge Production in Archaeology and Anthropology Workshop, October 2023
 
+[![Docker build
+status](https://github.com/benmarwick/wg-sociopolitics-of-knowledge-production-in-archaeology-workshop/workflows/.github/workflows/render-in-docker.yml/badge.svg)](https://github.com/benmarwick/wg-sociopolitics-of-knowledge-production-in-archaeology-workshop/actions)
+
 [![Binder](https://mybinder.org/badge_logo.svg)](https://mybinder.org/v2/gh/benmarwick/wg-sociopolitics-of-knowledge-production-in-archaeology-workshop/master?urlpath=rstudio)
 
 This repository contains the R code and data for my presentation
@@ -10,7 +13,7 @@ This repository contains the R code and data for my presentation
 slides](https://docs.google.com/presentation/d/1y6KGr1tUUwqQNrJE6gQPFboaMPaHxQmfLx0tpld8fKQ/edit#slide=id.ged4dcd42fc_0_167))
 in this workshop:
 
-## Reputational Risk and Questionable Research Practices in Archaeological Science.
+### Reputational Risk and Questionable Research Practices in Archaeological Science.
 
 Abstract: Uneven access to methods and data is an important dimension of
 global inequality in archaeological knowledge production. For example,
@@ -49,8 +52,8 @@ formats to equalise the dissemination of archaeological science.
 
 Please cite this compendium as:
 
-> Authors, (2023). *Compendium of R code and data for Reputational Risk
-> and Questionable Research Practices in Archaeological Science.*.
+> Marwick, B., (2023). *Compendium of R code and data for Reputational
+> Risk and Questionable Research Practices in Archaeological Science.*
 > Accessed 11 Oct 2023. Online at <https://doi.org/xxx/xxx>
 
 ## Contents

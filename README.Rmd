@@ -16,11 +16,13 @@ Title <- "Reputational Risk and Questionable Research Practices in Archaeologica
 
 # The Socio-Politics of Knowledge Production in Archaeology and Anthropology Workshop, October 2023
 
+[![Docker build status](https://github.com/benmarwick/wg-sociopolitics-of-knowledge-production-in-archaeology-workshop/workflows/.github/workflows/render-in-docker.yml/badge.svg)](https://github.com/benmarwick/wg-sociopolitics-of-knowledge-production-in-archaeology-workshop/actions)
+
 [![Binder](https://mybinder.org/badge_logo.svg)](https://mybinder.org/v2/gh/benmarwick/wg-sociopolitics-of-knowledge-production-in-archaeology-workshop/master?urlpath=rstudio)
 
 This repository contains the R code and data for my presentation (available at [google slides](https://docs.google.com/presentation/d/1y6KGr1tUUwqQNrJE6gQPFboaMPaHxQmfLx0tpld8fKQ/edit#slide=id.ged4dcd42fc_0_167)) in this workshop:
 
-## Reputational Risk and Questionable Research Practices in Archaeological Science.
+### Reputational Risk and Questionable Research Practices in Archaeological Science.
 
 Abstract: Uneven access to methods and data is an important dimension of global inequality in archaeological knowledge production. For example, physical instrumentation, such as a mass spectrometer, is often expensive to operate and highly immobile, requiring researchers to pay per use, and travel to locations to analyse samples. Computational methods and digital data, on the other hand, because of their nonphysical nature, have high potential for rapid and low-cost distribution far beyond their points of origin. Despite the low barriers to disseminating these materials, sharing of computational methods and digital data remains relatively rare in archaeology. This represents an unrealised opportunity to improve access and participation for underserved scholars, who may lack personal connections to learn new methods via direct instruction, and to acquire data through private arrangements. In this paper I explore if reputational risk might explain some of the reluctance for archaeologists to share their materials. If researchers are concerned that sharing code and data may enable others to identify either intentional or accidental questionable research practices (QRPs) that would harm their reputation, then we might predict low levels of sharing to be accompanied by high levels of QRPs. Alternatively, if non-reputational factors such as a lack of awareness or time limitations better explain low levels of sharing, we might predict low levels of QRPs. I investigate QRPs by measuring the prevalence of p-hacking (manipulation of a data analysis to produce a statistically significant result) in 5000 journal articles. The results show a strong signal of p-hacking, supporting reputational risk as a factor in the persistence of inequalities in archaeological knowledge production. To address this I propose de-emphasising reputation as a currency in research evaluation, for example by avoiding use of prestige metrics such as impact factors and h-indices. I further propose the research compendium as a template for communicating archaeological research that includes methods and data in human- and machine-readable formats to equalise the dissemination of archaeological science. 
 
@@ -29,7 +31,7 @@ Abstract: Uneven access to methods and data is an important dimension of global 
 
 Please cite this compendium as:
 
-> Authors, (`r format(Sys.Date(), "%Y")`). _Compendium of R code and data for `r Title`_. Accessed `r format(Sys.Date(), "%d %b %Y")`. Online at <https://doi.org/xxx/xxx>
+> Marwick, B., (`r format(Sys.Date(), "%Y")`). _Compendium of R code and data for `r Title`_ Accessed `r format(Sys.Date(), "%d %b %Y")`. Online at <https://doi.org/xxx/xxx>
 
 ## Contents
 
