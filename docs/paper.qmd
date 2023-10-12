@@ -67,8 +67,7 @@ ft_df <-
   ) 
 
 # save this so we don't have to scrape again
-saveRDS(ft_df,
-        "data/full_text_jasr.rds")
+saveRDS(ft_df, here::here("data/full_text_jasr.rds"))
 ```
 
 
@@ -127,7 +126,7 @@ saveRDS(ft_df,
 ```{r}
 #| eval: false
 
-ft_df_jasr <- readRDS("data/full_text_jasr.rds")
+ft_df_jasr <- readRDS(here::here("data/full_text_jasr.rds"))
 
 ft_df_clean <- 
   ft_df_jasr %>% 

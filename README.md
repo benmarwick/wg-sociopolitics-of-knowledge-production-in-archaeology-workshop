@@ -4,8 +4,7 @@
 # The Socio-Politics of Knowledge Production in Archaeology and Anthropology Workshop, October 2023
 
 [![Docker build
-status](https://github.com/benmarwick/wg-sociopolitics-of-knowledge-production-in-archaeology-workshop/workflows/.github/workflows/render-in-docker.yml/badge.svg)](https://github.com/benmarwick/wg-sociopolitics-of-knowledge-production-in-archaeology-workshop/actions)
-
+status](https://github.com/benmarwick/wg-sociopolitics-of-knowledge-production-in-archaeology-workshop/workflows/.github/workflows/render-in-docker.yaml/badge.svg)](https://github.com/benmarwick/wg-sociopolitics-of-knowledge-production-in-archaeology-workshop/actions)
 [![Binder](https://mybinder.org/badge_logo.svg)](https://mybinder.org/v2/gh/benmarwick/wg-sociopolitics-of-knowledge-production-in-archaeology-workshop/master?urlpath=rstudio)
 
 This repository contains the R code and data for my presentation
